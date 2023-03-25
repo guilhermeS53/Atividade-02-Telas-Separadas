@@ -13,7 +13,7 @@ export default function App() {
         <Stack.Screen name="InitialScreen" component={InitialScreen} />
         <Stack.Screen name="WelcomeScreen" component={WelcomeScreen} />
       </Stack.Navigator>
-    <StatusBar style="auto" />
+      <StatusBar style="auto" />
     </NavigationContainer>
   )
 }

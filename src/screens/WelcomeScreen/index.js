@@ -14,18 +14,28 @@ const WelcomeScreen = ({ route }) => {
 
   return (
     <View style={style.container}>
-      <Text style={style.title}>Bem-vindo(a)</Text>
-      <Text style={style.text}>Bem-vindo(a) {username} ao seu workspace</Text>
-      <Text style={style.text}>Escolha um número de 1 a 10:</Text>
+      <Text style={[style.title, { textAlign: 'center' }]}>
+        Hello again, User!
+        {'\n'}
+        It's a pleasure to see you :)
+      </Text>
+      <Text style={[style.text, { textAlign: 'center' }]}>
+        Welcome to your WorkSpace, {username}
+      </Text>
+      <Text style={[style.text, { textAlign: 'center' }]}>
+        Please, choose a number from 1 to 10
+      </Text>
+
       <TextInput
         style={style.input}
         keyboardType="numeric"
         onChangeText={setNumber}
         value={number}
       />
+
       <View style={style.button}>
         <Button
-          title="Continue"
+          title="Access Screen"
           onPress={handleContinuePress}
           disabled={!Number.isInteger(Number(number)) || number < 1 || number > 10}
           color="#107184"
