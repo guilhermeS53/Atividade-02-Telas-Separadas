@@ -9,7 +9,7 @@ const WelcomeScreen = ({ route }) => {
   const [number, setNumber] = React.useState('');
 
   const handleContinuePress = () => {
-    navigation.navigate('Result', { number });
+    navigation.navigate('CalculateScreen', { number });
   };
 
   return (
