@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
       marginBottom: 20,
     },
     text: {
-      fontSize: 20,
+      fontSize: 25,
       marginBottom: 20,
     },
     input: {

@@ -1,22 +1,30 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { View, Text, Button } from 'react-native';
+import { useRoute, useNavigation } from '@react-navigation/native';
 import style from './style';
 
 const ResultantScreen = () => {
   const route = useRoute();
   const { finalResult } = route.params;
-  const operationMessage = finalResult >= 0 ? 'added' : 'subtracted';
-  const message = `You ${operationMessage} 1 to the chosen number. The result is:`;
+  const navigation = useNavigation();
+
+  const handleGoBackPress = () => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'InitialScreen' }],
+    });
+  };
 
   return (
     <View style={style.container}>
       <Text style={[style.title, { textAlign: 'center' }]}>Result Screen!</Text>
+      <Text style={[style.text, { textAlign: 'center' }]}>The value result from the previous actions is:</Text>
       <Text style={[style.text, { textAlign: 'center' }]}>
-        {message}
-        {'\n'}
         <Text style={{ fontWeight: 'bold' }}>{finalResult}</Text>
       </Text>
+      <View style={style.button}>
+        <Button title="Go To Initial Screen" onPress={handleGoBackPress} color="#107184" />
+      </View>
     </View>
   );
 };
