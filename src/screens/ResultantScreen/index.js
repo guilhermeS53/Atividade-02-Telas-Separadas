@@ -1,55 +1,38 @@
+// Importando as bibliotecas do React
 import React from 'react';
-import { View, Text, TouchableOpacity, TextInput, Button } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import style from './style';
+import { View, Text, Button } from 'react-native';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import styles from './style';
 
-const CalculateScreen = ({ route }) => {
-  const { number } = route.params;
+const ResultantScreen = () => {
+  const route = useRoute();
   const navigation = useNavigation();
-  const [displayNumber, setDisplayNumber] = React.useState(number.toString());
+  const { finalResult } = route.params;
 
-  const handleAdditionPress = () => {
-    setDisplayNumber(parseInt(displayNumber) + 1);
-  };
+  const resultantFinal = finalResult;
 
-  const handleSubtractionPress = () => {
-    setDisplayNumber(parseInt(displayNumber) - 1);
+  const handleRestartPress = () => {
+    navigation.popToTop();
   };
 
   return (
-    <View style={style.container}>
-      <Text style={[style.title, { textAlign: 'center' }]}>
-        Screen to Calculate!
+    <View style={styles.container}>
+      <Text style={[styles.title, { textAlign: 'center' }]}>
+        Resultant Screen
         {'\n'}
-        On this screen, you add a number or delete a number, dear user
       </Text>
 
-      <Text style={[style.text, { textAlign: 'center' }]}>
-        The number you selected on the previous screen is:
+      <Text style={[styles.text, { textAlign: 'center' }]}>
+        The result is:
         {'\n'}
-        <Text style={{ fontWeight: 'bold' }}>{displayNumber}
-        </Text>
+        <Text style={{ fontWeight: 'bold' }}>{resultantFinal}</Text>
       </Text>
 
-      <View style={style.button}>
-        <Button
-          title="Sum +1 Number"
-          onPress={handleAdditionPress}
-          disabled={!Number.isInteger(parseInt(displayNumber))}
-          color="#107184"
-        />
-      </View>
-
-      <View style={[style.button, { marginVertical: 20 }]}>
-        <Button
-          title="Subtract -1 Number"
-          onPress={handleSubtractionPress}
-          disabled={!Number.isInteger(parseInt(displayNumber))}
-          color="#107184"
-        />
+      <View style={styles.button}>
+        <Button title="Go To InitialScreen" onPress={handleRestartPress} color="#107184" />
       </View>
     </View>
   );
 };
 
-export default CalculateScreen;
+export default ResultantScreen;

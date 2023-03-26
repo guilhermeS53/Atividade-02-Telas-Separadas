@@ -7,6 +7,7 @@ const CalculateScreen = ({ route }) => {
   const { number } = route.params;
   const navigation = useNavigation();
   const [displayNumber, setDisplayNumber] = React.useState(number.toString());
+  const [calculationResult, setCalculationResult] = React.useState(0);
 
   const handleAdditionPress = () => {
     setDisplayNumber(parseInt(displayNumber) + 1);
@@ -14,6 +15,12 @@ const CalculateScreen = ({ route }) => {
 
   const handleSubtractionPress = () => {
     setDisplayNumber(parseInt(displayNumber) - 1);
+  };
+
+  const handleCalculatePress = () => {
+    const result = parseInt(displayNumber) + parseInt(route.params.selectedValue);
+    setCalculationResult(result);
+    navigation.navigate('ResultantScreen', { finalResult: result });
   };
 
   return (
@@ -27,8 +34,7 @@ const CalculateScreen = ({ route }) => {
       <Text style={[style.text, { textAlign: 'center' }]}>
         The number you selected on the previous screen is:
         {'\n'}
-        <Text style={{ fontWeight: 'bold' }}>{displayNumber}
-        </Text>
+        <Text style={{ fontWeight: 'bold' }}>{displayNumber}</Text>
       </Text>
 
       <View style={style.button}>
@@ -44,6 +50,15 @@ const CalculateScreen = ({ route }) => {
         <Button
           title="Subtract -1 Number"
           onPress={handleSubtractionPress}
+          disabled={!Number.isInteger(parseInt(displayNumber))}
+          color="#107184"
+        />
+      </View>
+
+      <View style={style.button}>
+        <Button
+          title="Calculate"
+          onPress={handleCalculatePress}
           disabled={!Number.isInteger(parseInt(displayNumber))}
           color="#107184"
         />
