@@ -35,7 +35,7 @@ const WelcomeScreen = ({ route }) => {
 
       <View style={style.button}>
         <Button
-          title="Access Screen"
+          title="Access Next Screen"
           onPress={handleContinuePress}
           disabled={!Number.isInteger(Number(number)) || number < 1 || number > 10}
           color="#107184"
