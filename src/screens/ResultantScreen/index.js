@@ -9,7 +9,7 @@ const ResultantScreen = () => {
   const navigation = useNavigation();
   const { finalResult } = route.params;
 
-  const resultantFinal = finalResult;
+  const resultantFinal = finalResult || 0;
 
   const handleRestartPress = () => {
     navigation.popToTop();
@@ -25,7 +25,8 @@ const ResultantScreen = () => {
       <Text style={[styles.text, { textAlign: 'center' }]}>
         The result is:
         {'\n'}
-        <Text style={{ fontWeight: 'bold' }}>{resultantFinal}</Text>
+        <Text style={{ fontWeight: 'bold' }}>{isNaN(resultantFinal) ? 'Invalid input' : resultantFinal}</Text>
+        {/* Verificação para entender se a entrada do usuário é válida ou não */}
       </Text>
 
       <View style={styles.button}>
