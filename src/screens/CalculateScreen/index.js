@@ -1,25 +1,29 @@
+// Importando as bibliotecas do React
 import React from 'react';
 import { View, Text, TouchableOpacity, TextInput, Button } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import style from './style';
 
+  // Inserção da tela de cálculo, onde irá armazenar o valor inserido pelo usuário e executar os cálculos devidos
 const CalculateScreen = ({ route }) => {
   const navigation = useNavigation();
+  // Definirá abaixo o estado inicial do valor do resultado, a partir do que o usuário inseriu anteriormente 
   const [resultValue, setResultValue] = React.useState(parseInt(route.params.number));
   const [operationMessage, setOperationMessage] = React.useState('');
 
+  // Os dois consts seguintes são referentes aos botões, respectivamente, de adição (soma) e também o de subtração
   const handleAdditionPress = () => {
     const newValue = resultValue + 1;
     setResultValue(newValue);
     setOperationMessage('You added a number to the chosen number');
   };
-  
+
   const handleSubtractionPress = () => {
     const newValue = resultValue - 1;
     setResultValue(newValue);
     setOperationMessage('You subtracted a number to the chosen number');
   };
-
+  // Função para fazer a navegação para a tela de ResultantScreen a partir dos resultados obtidos
   const handleCalculatePress = () => {
     const result = resultValue;
     navigation.navigate('ResultantScreen', { finalResult: result });
