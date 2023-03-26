@@ -36,7 +36,7 @@ const CalculateScreen = ({ route }) => {
       <Text style={[style.text, { textAlign: 'center' }]}>
         The number you selected on the previous screen is:
         {'\n'}
-        <Text style={{ fontWeight: 'bold' }}>{resultValue}</Text>
+        <Text style={{ fontWeight: 'bold' }}>{route.params.number}</Text>
       </Text>
 
       <View style={style.button}>
