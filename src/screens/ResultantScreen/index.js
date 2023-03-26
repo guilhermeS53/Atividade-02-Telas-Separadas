@@ -1,37 +1,22 @@
-// Importando as bibliotecas do React
 import React from 'react';
-import { View, Text, Button } from 'react-native';
-import { useRoute, useNavigation } from '@react-navigation/native';
-import styles from './style';
+import { View, Text } from 'react-native';
+import { useRoute } from '@react-navigation/native';
+import style from './style';
 
 const ResultantScreen = () => {
   const route = useRoute();
-  const navigation = useNavigation();
   const { finalResult } = route.params;
-
-  const resultantFinal = finalResult || 0;
-
-  const handleRestartPress = () => {
-    navigation.popToTop();
-  };
+  const operationMessage = finalResult >= 0 ? 'added' : 'subtracted';
+  const message = `You ${operationMessage} 1 to the chosen number. The result is:`;
 
   return (
-    <View style={styles.container}>
-      <Text style={[styles.title, { textAlign: 'center' }]}>
-        Resultant Screen
+    <View style={style.container}>
+      <Text style={[style.title, { textAlign: 'center' }]}>Result Screen!</Text>
+      <Text style={[style.text, { textAlign: 'center' }]}>
+        {message}
         {'\n'}
+        <Text style={{ fontWeight: 'bold' }}>{finalResult}</Text>
       </Text>
-
-      <Text style={[styles.text, { textAlign: 'center' }]}>
-        The result is:
-        {'\n'}
-        <Text style={{ fontWeight: 'bold' }}>{isNaN(resultantFinal) ? 'Invalid input' : resultantFinal}</Text>
-        {/* Verificação para entender se a entrada do usuário é válida ou não */}
-      </Text>
-
-      <View style={styles.button}>
-        <Button title="Go To InitialScreen" onPress={handleRestartPress} color="#107184" />
-      </View>
     </View>
   );
 };
